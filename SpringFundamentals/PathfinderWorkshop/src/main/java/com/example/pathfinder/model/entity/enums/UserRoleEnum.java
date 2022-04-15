@@ -1,4 +1,4 @@
-package com.example.pathfinder.model.entity;
+package com.example.pathfinder.model.entity.enums;
 
 public enum UserRoleEnum {
     USER,

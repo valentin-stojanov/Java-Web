@@ -1,5 +1,7 @@
 package com.example.pathfinder.model.entity;
 
+import com.example.pathfinder.model.entity.enums.UserRoleEnum;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,8 @@ public class RoleEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserRoleEnum role;
+
+
 
     public RoleEntity() {
     }

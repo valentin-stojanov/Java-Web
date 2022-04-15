@@ -1,7 +1,10 @@
 package com.example.pathfinder.model.entity;
 
+import com.example.pathfinder.model.entity.enums.UserlevelEnum;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +25,20 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-
     private UserlevelEnum level;
 
+    @ManyToMany
+    private RoleEntity role;
+
     public UserEntity() {
+    }
+
+    public RoleEntity getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 
     public String getUsername() {
