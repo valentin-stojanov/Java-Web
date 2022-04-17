@@ -12,8 +12,6 @@ public class RoleEntity extends BaseEntity{
     @Column(nullable = false)
     private UserRoleEnum role;
 
-
-
     public RoleEntity() {
     }
 

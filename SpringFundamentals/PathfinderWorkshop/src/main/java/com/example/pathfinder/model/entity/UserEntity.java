@@ -1,15 +1,16 @@
 package com.example.pathfinder.model.entity;
 
-import com.example.pathfinder.model.entity.enums.UserlevelEnum;
+import com.example.pathfinder.model.entity.enums.UserLevelEnum;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
+
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -17,28 +18,26 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "fullname", nullable = false)
-    private String fullName;
+    private Integer age;
 
-    private int age;
-
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    private UserlevelEnum level;
+    @Enumerated(EnumType.STRING)
+    private UserLevelEnum level;
 
     @ManyToMany
-    private RoleEntity role;
+    private List<RoleEntity> roles;
 
     public UserEntity() {
     }
 
-    public RoleEntity getRole() {
-        return role;
+    public List<RoleEntity> getRoles() {
+        return roles;
     }
 
-    public void setRole(RoleEntity role) {
-        this.role = role;
+    public void setRoles(List<RoleEntity> role) {
+        this.roles = role;
     }
 
     public String getUsername() {
@@ -81,11 +80,11 @@ public class UserEntity extends BaseEntity {
         this.email = email;
     }
 
-    public UserlevelEnum getLevel() {
+    public UserLevelEnum getLevel() {
         return level;
     }
 
-    public void setLevel(UserlevelEnum level) {
+    public void setLevel(UserLevelEnum level) {
         this.level = level;
     }
 }

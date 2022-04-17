@@ -1,8 +1,9 @@
 package com.example.pathfinder.model.entity;
 
-import com.example.pathfinder.model.entity.enums.UserlevelEnum;
+import com.example.pathfinder.model.entity.enums.UserLevelEnum;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "routes")
@@ -15,10 +16,9 @@ public class RouteEntity extends BaseEntity {
     private String gpxCoordinates;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "level_enum")
-    private UserlevelEnum level;
+    private UserLevelEnum level;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @ManyToOne
@@ -27,7 +27,18 @@ public class RouteEntity extends BaseEntity {
     @Column(name = "video_url")
     private String videoUrl;
 
+    @ManyToMany
+    private List<CategoryEntity> categories;
+
     public RouteEntity() {
+    }
+
+    public List<CategoryEntity> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryEntity> categories) {
+        this.categories = categories;
     }
 
     public String getDescription() {
@@ -46,11 +57,11 @@ public class RouteEntity extends BaseEntity {
         this.gpxCoordinates = gpxCoordinates;
     }
 
-    public UserlevelEnum getLevel() {
+    public UserLevelEnum getLevel() {
         return level;
     }
 
-    public void setLevel(UserlevelEnum level) {
+    public void setLevel(UserLevelEnum level) {
         this.level = level;
     }
 

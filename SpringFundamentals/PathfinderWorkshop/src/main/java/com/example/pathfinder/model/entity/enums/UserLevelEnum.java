@@ -1,7 +1,7 @@
 package com.example.pathfinder.model.entity.enums;
 
-public enum UserlevelEnum {
+public enum UserLevelEnum {
     BEGINNER,
     INTERMEDIATE,
-    ADVANCE
+    ADVANCED
 }

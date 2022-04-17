@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 @Table(name = "messages")
 public class MessageEntity extends BaseEntity{
 
-    @Column(name = "date_time")
+    @Column(name = "date_time", nullable = false)
     private LocalDateTime dateTime;
 
-    @Column(name = "text_content")
+    @Column(name = "text_content", nullable = false, columnDefinition = "TEXT")
     private String textContent;
 
     @ManyToOne

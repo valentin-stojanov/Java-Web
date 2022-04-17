@@ -2,6 +2,7 @@ package com.example.pathfinder.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
@@ -15,10 +16,32 @@ public class CommentsEntity extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime created;
 
-    @Column(name = "text_content", columnDefinition = "LONGTEXT", nullable = false)
+    @Column(name = "text_content", columnDefinition = "TEXT", nullable = false)
     private String textContent;
 
+    @ManyToOne
+    private UserEntity author;
+
+    @ManyToOne
+    private RouteEntity route;
+
     public CommentsEntity() {
+    }
+
+    public UserEntity getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserEntity author) {
+        this.author = author;
+    }
+
+    public RouteEntity getRoute() {
+        return route;
+    }
+
+    public void setRoute(RouteEntity route) {
+        this.route = route;
     }
 
     public boolean isApproved() {
