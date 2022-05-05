@@ -1,14 +1,19 @@
 package com.example.pathfinder.model.binding;
 
+import javax.validation.constraints.Min;
+
 public class UserRegisterBindingModel {
     private String username;
     private String fullName;
     private String email;
+
+    @Min(10)
     private Integer age;
+
     private String password;
     private String confirmPassword;
 
-    public UserRegisterBindingModel(String username) {
+    public UserRegisterBindingModel() {
     }
 
     public String getUsername() {
