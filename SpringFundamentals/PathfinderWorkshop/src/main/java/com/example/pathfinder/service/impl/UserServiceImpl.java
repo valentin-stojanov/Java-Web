@@ -8,6 +8,8 @@ import com.example.pathfinder.service.UserService;
 import com.example.pathfinder.util.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -49,4 +51,11 @@ public class UserServiceImpl implements UserService {
         currentUser.setUsername(null);
     }
 
+    @Override
+    public UserServiceModel findById(Long id) {
+        return userRepository
+                .findById(id)
+                .map(userEntity -> modelMapper.map(userEntity, UserServiceModel.class))
+                .orElse(null);
+    }
 }
