@@ -1,48 +1,34 @@
-package com.example.pathfinder.model.entity;
+package com.example.pathfinder.model.service;
 
+import com.example.pathfinder.model.entity.CategoryEntity;
+import com.example.pathfinder.model.entity.PictureEntity;
+import com.example.pathfinder.model.entity.UserEntity;
 import com.example.pathfinder.model.entity.enums.UserLevelEnum;
 
-import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-@Entity
-@Table(name = "routes")
-public class RouteEntity extends BaseEntity {
+public class RouteServiceModel {
 
-    @Column(columnDefinition = "TEXT")
+    private Long id;
     private String description;
-
-    @Column(name = "gpx_coordinates", columnDefinition = "LONGTEXT")
     private String gpxCoordinates;
-
-    @Enumerated(EnumType.STRING)
     private UserLevelEnum level;
-
-    @Column(nullable = false, unique = true)
     private String name;
-
-    @ManyToOne
     private UserEntity author;
-
-    @Column(name = "video_url")
     private String videoUrl;
-
-    @OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
     private Set<PictureEntity> pictures;
+    private List<CategoryEntity> categories;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<CategoryEntity> categories;
-
-    public RouteEntity() {
+    public RouteServiceModel() {
     }
 
-    public Set<CategoryEntity> getCategories() {
-        return categories;
+    public Long getId() {
+        return id;
     }
 
-    public void setCategories(Set<CategoryEntity> categories) {
-        this.categories = categories;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -99,5 +85,13 @@ public class RouteEntity extends BaseEntity {
 
     public void setPictures(Set<PictureEntity> pictures) {
         this.pictures = pictures;
+    }
+
+    public List<CategoryEntity> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryEntity> categories) {
+        this.categories = categories;
     }
 }
