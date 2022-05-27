@@ -1,33 +1,38 @@
 package bg.softuni.intro.ioc;
 
-import org.apache.catalina.LifecycleState;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ZooService {
 
+    private final Animal animal1;
+    private final Animal animal2;
+    private final Animal animal3;
+
+    public ZooService(@Qualifier("mySuperDog") Animal animal1,
+                      @Qualifier("normalDog") Animal animal2,
+                      @Qualifier("cat") Animal animal3) {
+        this.animal1 = animal1;
+        this.animal2 = animal2;
+        this.animal3 = animal3;
+    }
 
 
-//    private final Animal animal;
+    public void doWork() {
+        animal1.makeNoise();
+        animal2.makeNoise();
+        animal3.makeNoise();
+    }
+
+//    private List<Animal> animals;
 //
-//    public ZooService(Animal animal) {
-//        this.animal = animal;
+//    public ZooService(List<Animal> animals){
+//        this.animals = animals;
 //    }
 //
 //    public void doWork() {
-//        animal.makeNoise();
+//        animals.stream()
+//                .forEach(Animal::makeNoise);
 //    }
-
-    private List<Animal> animals;
-
-    public ZooService(List<Animal> animals){
-        this.animals = animals;
-    }
-
-    public void doWork() {
-        animals.stream()
-                .forEach(Animal::makeNoise);
-    }
 }

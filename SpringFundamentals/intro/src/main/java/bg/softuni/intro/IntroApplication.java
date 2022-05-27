@@ -10,7 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class IntroApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext applicationContext = SpringApplication.run(IntroApplication.class, args);
+		SpringApplication.run(IntroApplication.class, args);
 //		Animal dog = applicationContext.getBean(Dog.class);
 //		System.out.println();
 	}
