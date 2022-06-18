@@ -20,10 +20,10 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(name = "fullname")
+    @Column(name = "full_name")
     private String fullName;
 
     private int age;
@@ -31,6 +31,7 @@ public class UserEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<RoleEntity> roles;
 
+    @Enumerated(EnumType.STRING)
     private LevelEnum level;
 
     public UserEntity() {

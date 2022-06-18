@@ -30,23 +30,26 @@ public class RouteEntity {
     @OneToMany(mappedBy = "route", cascade = CascadeType.ALL)
     private Set<CommentEntity> comments;
 
-    @OneToOne
-    private PictureEntity header;
+    @OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
+    private Set<PictureEntity> pictures;
 
-    @OneToMany
+    @ManyToMany
     private Set<CategoryEntity> categories;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
 
     public RouteEntity() {
         this.comments = new HashSet<>();
         this.categories = new HashSet<>();
     }
 
-    public PictureEntity getHeader() {
-        return header;
+    public Set<PictureEntity> getPictures() {
+        return pictures;
     }
 
-    public void setHeader(PictureEntity header) {
-        this.header = header;
+    public void setPictures(Set<PictureEntity> pictures) {
+        this.pictures = pictures;
     }
 
     public Long getId() {
