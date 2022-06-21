@@ -25,6 +25,9 @@ public class OfferEntity {
 
     private String imageUrl;
 
+    @Column(nullable = false)
+    private String description;
+
     private int mileage;
 
     @Column(nullable = false)
@@ -48,5 +51,93 @@ public class OfferEntity {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public EngineEnum getEngine() {
+        return engine;
+    }
+
+    public void setEngine(EngineEnum engine) {
+        this.engine = engine;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public TransmissionEnum getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(TransmissionEnum transmission) {
+        this.transmission = transmission;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public ModelEntity getModel() {
+        return model;
+    }
+
+    public void setModel(ModelEntity model) {
+        this.model = model;
+    }
+
+    public ModelEntity getSeller() {
+        return seller;
+    }
+
+    public void setSeller(ModelEntity seller) {
+        this.seller = seller;
+    }
+
+    @Override
+    public String toString() {
+        return "OfferEntity{" +
+                "id=" + id +
+                ", engine=" + engine +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", description='" + description + '\'' +
+                ", mileage=" + mileage +
+                ", price=" + price +
+                ", transmission=" + transmission +
+                ", year=" + year +
+                ", model=" + model +
+                ", seller=" + seller +
+                '}';
     }
 }
