@@ -42,6 +42,8 @@ public class UserController {
     @PostMapping("/register")
     public String register(UserRegisterDto userRegisterDto) {
 
+        userService.registerAndLogin(userRegisterDto);
+
         return "redirect:/";
     }
 
