@@ -43,7 +43,7 @@ public class OfferEntity {
     private ModelEntity model;
 
     @ManyToOne
-    private ModelEntity seller;
+    private UserEntity seller;
 
     public UUID getId() {
         return id;
@@ -117,11 +117,11 @@ public class OfferEntity {
         this.model = model;
     }
 
-    public ModelEntity getSeller() {
+    public UserEntity getSeller() {
         return seller;
     }
 
-    public void setSeller(ModelEntity seller) {
+    public void setSeller(UserEntity seller) {
         this.seller = seller;
     }
 
