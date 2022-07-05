@@ -1,4 +1,4 @@
-package com.softuni.battleships.models.repositories;
+package com.softuni.battleships.repositories;
 
 import com.softuni.battleships.models.CategoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
