@@ -14,7 +14,7 @@ import javax.validation.Valid;
 @Controller
 public class ShipController {
 
-    private ShipService shipService;
+    private final ShipService shipService;
 
     public ShipController(ShipService shipService) {
         this.shipService = shipService;

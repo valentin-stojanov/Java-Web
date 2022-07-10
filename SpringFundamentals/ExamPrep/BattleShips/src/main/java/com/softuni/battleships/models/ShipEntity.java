@@ -1,6 +1,7 @@
 package com.softuni.battleships.models;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Fetch;
 import java.time.LocalDate;
 
 @Entity
@@ -22,7 +23,7 @@ public class ShipEntity {
     @ManyToOne
     private CategoryEntity category;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity user;
 
     public Long getId() {
