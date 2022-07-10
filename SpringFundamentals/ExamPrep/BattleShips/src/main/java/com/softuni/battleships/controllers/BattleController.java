@@ -1,6 +1,7 @@
 package com.softuni.battleships.controllers;
 
 import com.softuni.battleships.models.dtos.StartBattleDTO;
+import com.softuni.battleships.services.AuthService;
 import com.softuni.battleships.services.BattleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -12,16 +13,23 @@ import javax.validation.Valid;
 @Controller
 public class BattleController {
 
-    private BattleService battleService;
+    private final BattleService battleService;
+    private final AuthService authService;
 
-    public BattleController(BattleService battleService) {
+    public BattleController(BattleService battleService,
+                            AuthService authService) {
         this.battleService = battleService;
+        this.authService = authService;
     }
 
     @PostMapping("/battle")
     public String battle(@Valid StartBattleDTO startBattleDTO,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes){
+
+        if(!this.authService.isLoggedIn()){
+            return "redirect:/";
+        }
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("startBattleDTO", startBattleDTO);
