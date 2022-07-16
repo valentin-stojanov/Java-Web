@@ -15,52 +15,51 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new Pbkdf2PasswordEncoder();
     }
 
     @Bean
-    UserDetailsService userDetailsService(UserRepository userRepository){
+    UserDetailsService userDetailsService(UserRepository userRepository) {
         return new MobileleUserDetailsService(userRepository);
     }
 
     @Bean
-    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.
+        http
                 // define which requests are allowed and which not
-                        authorizeRequests().
+                .authorizeRequests()
                 // everyone can download static resources (css, js, images)
-                        requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 // everyone can login and register
-                        antMatchers("/", "/users/login", "/users/register").permitAll().
-                antMatchers("/offers/all").permitAll().
+                .antMatchers("/", "/users/login", "/users/register").permitAll()
+                .antMatchers("/offers/all").permitAll()
                 // all other pages are available for logger in users
-                        anyRequest().
-                authenticated().
-                and().
+                .anyRequest().authenticated()
+                .and()
                 // configuration of form login
-                        formLogin().
+                .formLogin()
                 // the custom login form
-                        loginPage("/users/login").
+                .loginPage("/users/login")
                 // the name of the username form field
-                        usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
+                .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 // the name of the password form field
-                        passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
+                .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 // where to go in case that the login is successful
-                        defaultSuccessUrl("/").
+                .defaultSuccessUrl("/")
                 // where to go in case that the login failed
-                        failureForwardUrl("/users/login-error").
-                and().
+                .failureForwardUrl("/users/login-error")
+                .and()
                 // configure logut
-                        logout().
+                .logout()
                 // which is the logout url, must be POST request
-                        logoutUrl("/users/logout").
+                .logoutUrl("/users/logout")
                 // on logout go to the home page
-                        logoutSuccessUrl("/").
+                .logoutSuccessUrl("/")
                 // invalidate the session and delete the cookies
-                        invalidateHttpSession(true).
-                deleteCookies("JSESSIONID");
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
 
 
         return http.build();
