@@ -56,7 +56,7 @@ public class OfferController {
             return "redirect:/offers/add";
         }
 
-        //TODO
+
         offerService.addOffer(addOfferModel, userDetails);
 
         return "redirect:/offers/all";
