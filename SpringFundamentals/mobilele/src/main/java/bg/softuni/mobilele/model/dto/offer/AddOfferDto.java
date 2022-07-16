@@ -1,12 +1,9 @@
-package bg.softuni.mobilele.model.dto;
+package bg.softuni.mobilele.model.dto.offer;
 
 import bg.softuni.mobilele.model.enums.EngineEnum;
 import bg.softuni.mobilele.model.enums.TransmissionEnum;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 
 public class AddOfferDto {
 
@@ -20,6 +17,9 @@ public class AddOfferDto {
     @NotNull
     private Integer price;
 
+    @Min(1900)
+    @Positive
+    @NotNull
     private Integer year;
 
     @NotEmpty
@@ -30,6 +30,10 @@ public class AddOfferDto {
 
     @NotEmpty
     private String imageUrl;
+
+    @Min(0)
+    @Max(900000)
+    private int mileage;
 
     public EngineEnum getEngine() {
         return engine;
@@ -91,6 +95,16 @@ public class AddOfferDto {
 
     public AddOfferDto setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public AddOfferDto setMileage(int mileage) {
+        this.mileage = mileage;
         return this;
     }
 }

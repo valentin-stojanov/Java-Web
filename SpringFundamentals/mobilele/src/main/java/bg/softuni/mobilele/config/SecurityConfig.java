@@ -1,6 +1,5 @@
 package bg.softuni.mobilele.config;
 
-import bg.softuni.mobilele.model.enums.UserRoleEnum;
 import bg.softuni.mobilele.repository.UserRepository;
 import bg.softuni.mobilele.service.MobileleUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;

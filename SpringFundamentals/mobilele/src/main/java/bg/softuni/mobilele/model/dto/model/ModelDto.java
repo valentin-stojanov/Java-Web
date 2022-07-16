@@ -1,4 +1,4 @@
-package bg.softuni.mobilele.model.dto;
+package bg.softuni.mobilele.model.dto.model;
 
 public class ModelDto {
     private Long id;
