@@ -4,17 +4,20 @@ import bg.softuni.patfinder2.model.UserEntity;
 import bg.softuni.patfinder2.model.dto.UserRegistrationDTO;
 import bg.softuni.patfinder2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class AuthService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AuthService(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void register(UserRegistrationDTO registrationDTO) {
@@ -31,7 +34,7 @@ public class AuthService {
 
         UserEntity user = new UserEntity(
                 registrationDTO.getUsername(),
-                registrationDTO.getPassword(),
+                passwordEncoder.encode(registrationDTO.getPassword()),
                 registrationDTO.getEmail(),
                 registrationDTO.getFullName(),
                 registrationDTO.getAge()

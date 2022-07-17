@@ -11,7 +11,7 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-    private RouteService routeService;
+    private final RouteService routeService;
 
     @Autowired
     public HomeController(RouteService routeService) {

@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @Controller
 public class AuthController {
 
-    private AuthService authService;
+    private final AuthService authService;
 
     @Autowired
     public AuthController(AuthService authService) {
@@ -33,12 +33,12 @@ public class AuthController {
 //        model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
 //    }
 
-    @GetMapping("/register")
+    @GetMapping("/users/register")
     public String register() {
         return "register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/users/register")
     public String doRegistration(@Valid UserRegistrationDTO userRegistrationDTO,
                                  BindingResult bindingResult,
                                  RedirectAttributes redirectAttributes) {
@@ -46,17 +46,15 @@ public class AuthController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userRegistrationDTO", userRegistrationDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationDTO", bindingResult);
-            return "redirect:/register";
+            return "redirect:/users/register";
         }
 
         this.authService.register(userRegistrationDTO);
-        return "redirect:/login";
+        return "redirect:/users/login";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/users/login")
     public String doLogin() {
-
-
         return "login";
     }
 }
