@@ -10,14 +10,14 @@ VALUES (3, 'USER');
 
 -- some test users
 INSERT INTO users (id, age, full_name, level, password, username)
-VALUES (1, 28, 'Admin Adminov', 'ADVANCED', '12345', 'admin');
+VALUES (1, 28, 'Admin Adminov', 'ADVANCED', 'e1a33b7126b4b74cffa51ab9180d91e98ab99856935e6ab2449a22819c070297edf631f6f73d6fb0', 'admin');
 
 INSERT INTO users (id, age, full_name, level, password, username)
-VALUES (2, 29, 'Moderator Moderatorov', 'INTERMEDIATE', '12345',
+VALUES (2, 29, 'Moderator Moderatorov', 'INTERMEDIATE', 'e1a33b7126b4b74cffa51ab9180d91e98ab99856935e6ab2449a22819c070297edf631f6f73d6fb0',
         'moderator');
 
 INSERT INTO users (id, age, full_name, level, password, username)
-VALUES (3, 30, 'User Userov', 'BEGINNER', '12345', 'user');
+VALUES (3, 30, 'User Userov', 'BEGINNER', 'e1a33b7126b4b74cffa51ab9180d91e98ab99856935e6ab2449a22819c070297edf631f6f73d6fb0', 'user');
 
 INSERT INTO users (id, age, full_name, level, password, username)
 VALUES (4, 33, 'Ivan Ivanov', 'BEGINNER', '12345', 'ivan');
