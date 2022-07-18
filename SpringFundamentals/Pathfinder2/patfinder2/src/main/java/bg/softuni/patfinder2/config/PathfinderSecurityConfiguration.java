@@ -49,9 +49,9 @@ public class PathfinderSecurityConfiguration {
                 .logoutUrl("/users/logout")
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/")
-                .and()
-                .csrf().disable();
+                .logoutSuccessUrl("/");
+//                .and()
+//                .csrf().disable();
 
         return http.build();
     }

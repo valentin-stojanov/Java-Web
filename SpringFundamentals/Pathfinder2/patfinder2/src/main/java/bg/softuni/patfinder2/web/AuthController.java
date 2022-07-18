@@ -65,7 +65,7 @@ public class AuthController {
     }
 
     @GetMapping("/profile")
-    public String profile(Principal principal, Model model){
+    public String profile(Principal principal, Model model) {
         String username = principal.getName();
         UserEntity user = this.authService.getUser(username);
 
@@ -74,7 +74,7 @@ public class AuthController {
                 user.getEmail(),
                 user.getFullName(),
                 user.getAge(),
-                user.getLevel() != null ? user.getLevel().name():"BEGINNER"
+                user.getLevel() != null ? user.getLevel().name() : "BEGINNER"
         );
 
         model.addAttribute("user", userProfileView);
