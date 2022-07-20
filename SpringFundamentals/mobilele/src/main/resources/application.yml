@@ -34,6 +34,8 @@ spring:
   #api-secret:
   #cloud-name:
 
+#Mailhog installation releases.
+#https://github.com/mailhog/MailHog/releases
 mail:
   host: "localhost"
   port: 1025
