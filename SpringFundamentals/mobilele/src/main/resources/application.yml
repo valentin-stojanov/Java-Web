@@ -33,3 +33,9 @@ spring:
   #api-key:
   #api-secret:
   #cloud-name:
+
+mail:
+  host: "localhost"
+  port: 1025
+  username: "mobilele@mobilele.com"
+  password: ""

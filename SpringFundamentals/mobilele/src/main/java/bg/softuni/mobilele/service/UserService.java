@@ -17,16 +17,18 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final EmailService emailService;
 
     private final UserDetailsService userDetailsService;
 
     public UserService(PasswordEncoder passwordEncoder,
                        UserRepository userRepository,
                        UserMapper userMapper,
-                       UserDetailsService userDetailsService) {
+                       EmailService emailService, UserDetailsService userDetailsService) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.emailService = emailService;
         this.userDetailsService = userDetailsService;
     }
 
@@ -37,6 +39,8 @@ public class UserService {
 
         newUser = this.userRepository.save(newUser);
         login(newUser);
+        this.emailService.sendRegistrationEmail(newUser.getEmail(),
+                newUser.getFirstName() + " " + newUser.getLastName());
 
     }
 
