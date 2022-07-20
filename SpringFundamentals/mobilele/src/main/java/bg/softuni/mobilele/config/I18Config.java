@@ -29,7 +29,7 @@ public class I18Config {
     public MessageSource messageSource(){
         ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
         resourceBundleMessageSource.setBasename("i18n/messages");
-
+        resourceBundleMessageSource.setDefaultEncoding("UTF-8");
         return  resourceBundleMessageSource;
     }
 }
