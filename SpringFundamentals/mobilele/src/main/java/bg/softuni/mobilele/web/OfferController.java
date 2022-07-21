@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.awt.print.Pageable;
 
 @Controller
 @RequestMapping("/offers")
@@ -28,10 +29,12 @@ public class OfferController {
         this.brandService = brandService;
     }
 
-    @GetMapping("/all")
-    public String allOffers(){
-        return "offers";
-    }
+//    @GetMapping("/all")
+//    public String allOffers(Model model,
+//                            Pageable pageable){
+//        model.addAttribute("offers", )
+//        return "offers";
+//    }
 
     @GetMapping("/add")
     public String addOffer(Model model){
