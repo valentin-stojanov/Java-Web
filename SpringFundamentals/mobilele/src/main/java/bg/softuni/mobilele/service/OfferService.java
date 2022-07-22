@@ -9,6 +9,8 @@ import bg.softuni.mobilele.model.mapper.OfferMapper;
 import bg.softuni.mobilele.repository.ModelRepository;
 import bg.softuni.mobilele.repository.OfferRepository;
 import bg.softuni.mobilele.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,12 @@ public class OfferService {
         this.offerMapper = offerMapper;
         this.userRepository = userRepository;
         this.modelRepository = modelRepository;
+    }
+
+    public Page<OfferDetailDTO> getAllOffers(Pageable pageable){
+        return this.offerRepository
+                .findAll(pageable)
+                .map(this.offerMapper::offerEntityToCardListingOfferDto);
     }
 
     public void addOffer(AddOfferDto addOfferDto, UserDetails userDetails){
