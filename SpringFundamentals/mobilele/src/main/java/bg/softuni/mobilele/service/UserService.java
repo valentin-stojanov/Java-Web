@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 public class UserService {
     private final PasswordEncoder passwordEncoder;
@@ -24,7 +26,8 @@ public class UserService {
     public UserService(PasswordEncoder passwordEncoder,
                        UserRepository userRepository,
                        UserMapper userMapper,
-                       EmailService emailService, UserDetailsService userDetailsService) {
+                       EmailService emailService,
+                       UserDetailsService userDetailsService) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userMapper = userMapper;
@@ -32,7 +35,8 @@ public class UserService {
         this.userDetailsService = userDetailsService;
     }
 
-    public void registerAndLogin(UserRegisterDto userRegisterDto) {
+    public void registerAndLogin(UserRegisterDto userRegisterDto,
+                                 Locale preferredLocale) {
         UserEntity newUser = this.userMapper.userDtoToUserEntity(userRegisterDto);
         newUser.setPassword(this.passwordEncoder.encode(userRegisterDto.getPassword()));
 
@@ -40,7 +44,8 @@ public class UserService {
         newUser = this.userRepository.save(newUser);
         login(newUser);
         this.emailService.sendRegistrationEmail(newUser.getEmail(),
-                newUser.getFirstName() + " " + newUser.getLastName());
+                newUser.getFirstName() + " " + newUser.getLastName(),
+                preferredLocale);
 
     }
 
