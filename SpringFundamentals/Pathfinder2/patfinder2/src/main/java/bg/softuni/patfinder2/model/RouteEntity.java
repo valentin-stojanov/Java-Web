@@ -115,4 +115,13 @@ public class RouteEntity {
     public void setCategories(Set<CategoryEntity> categories) {
         this.categories = categories;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public RouteEntity setDescription(String description) {
+        this.description = description;
+        return this;
+    }
 }
