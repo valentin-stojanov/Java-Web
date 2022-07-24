@@ -25,6 +25,7 @@ public class I18Config {
         return  lci;
     }
 
+//    i18n resource folder - including files
     @Bean
     public MessageSource messageSource(){
         ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
