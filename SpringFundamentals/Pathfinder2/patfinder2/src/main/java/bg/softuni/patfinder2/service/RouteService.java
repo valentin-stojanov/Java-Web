@@ -1,6 +1,8 @@
 package bg.softuni.patfinder2.service;
 
+import bg.softuni.patfinder2.exceptions.RouteNotFoundException;
 import bg.softuni.patfinder2.model.RouteEntity;
+import bg.softuni.patfinder2.model.views.RouteDetailsView;
 import bg.softuni.patfinder2.model.views.RouteIndexView;
 import bg.softuni.patfinder2.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +24,11 @@ public class RouteService {
         return routeRepository.findMostCommented();
     }
 
-    public List<RouteIndexView> getAllRoutes(){
+    public List<RouteIndexView> getAllRoutes() {
         return this.routeRepository
                 .findAll()
                 .stream()
-                .map(route ->new RouteIndexView(
+                .map(route -> new RouteIndexView(
                         route.getId(),
                         route.getName(),
                         route.getDescription(),
@@ -36,5 +38,24 @@ public class RouteService {
                                 .get()
                                 .getUrl()
                 )).collect(Collectors.toList());
+    }
+
+    public RouteDetailsView getRoute(Long id) {
+        return this.routeRepository
+                .findById(id)
+                .map(route -> new RouteDetailsView(
+                        route.getId(),
+                        route.getGpxCoordinates(),
+                        route.getLevel().name(),
+                        route.getName(),
+                        route.getDescription(),
+                        route.getAuthor().getFullName(),
+                        route.getVideoUrl(),
+                        route.getPictures()
+                                .stream()
+                                .map(p -> p.getUrl())
+                                .collect(Collectors.toList())
+
+                )).orElseThrow(RouteNotFoundException::new);
     }
 }
