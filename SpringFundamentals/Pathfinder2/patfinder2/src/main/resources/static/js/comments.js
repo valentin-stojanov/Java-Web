@@ -37,3 +37,15 @@ function commentAsHtml(comment){
 
     return commentHtml;
 }
+
+fetch(`http://localhost:8080/api/${routeId}/comments`, {
+    headers: {
+        "Accept": "application/json"
+    }
+}).then(res=> res.json())
+    .then(data => {
+        for (let comment of data) {
+            commentContainer.innerHTML += commentAsHtml(comment);
+        }
+    });
+
