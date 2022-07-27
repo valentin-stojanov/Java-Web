@@ -4,6 +4,9 @@ public class CommentMessageDto {
 
     private String message;
 
+    public CommentMessageDto() {
+    }
+
     public CommentMessageDto(String message) {
         this.message = message;
     }
@@ -16,4 +19,6 @@ public class CommentMessageDto {
         this.message = message;
         return this;
     }
+
+
 }
