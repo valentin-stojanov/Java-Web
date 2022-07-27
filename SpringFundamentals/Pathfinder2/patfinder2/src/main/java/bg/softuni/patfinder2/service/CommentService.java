@@ -56,3 +56,4 @@ public class CommentService {
         return new CommentDisplayView(comment.getId(), author.getFullName(), comment.getText());
     }
 }
+
