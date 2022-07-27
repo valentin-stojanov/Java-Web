@@ -38,6 +38,7 @@ function commentAsHtml(comment){
     return commentHtml;
 }
 
+
 fetch(`http://localhost:8080/api/${routeId}/comments`, {
     headers: {
         "Accept": "application/json"
